@@ -1,4 +1,4 @@
-import livros from "../models/Livro.js";
+import { livros } from "../models/index.js";
 
 class LivroController {
 
@@ -44,9 +44,9 @@ class LivroController {
     try {
       const id = req.params.id;
 
-      await livros.findByIdAndUpdate(id, {$set: req.body});
+      await livros.findByIdAndUpdate(id, { $set: req.body });
 
-      res.status(200).send({message: "Livro atualizado com sucesso"});
+      res.status(200).send({ message: "Livro atualizado com sucesso" });
     } catch (erro) {
       next(erro);
     }
@@ -58,7 +58,7 @@ class LivroController {
 
       await livros.findByIdAndDelete(id);
 
-      res.status(200).send({message: "Livro removido com sucesso"});
+      res.status(200).send({ message: "Livro removido com sucesso" });
     } catch (erro) {
       next(erro);
     }
@@ -68,7 +68,7 @@ class LivroController {
     try {
       const editora = req.query.editora;
 
-      const livrosResultado = await livros.find({"editora": editora});
+      const livrosResultado = await livros.find({ "editora": editora });
 
       res.status(200).send(livrosResultado);
     } catch (erro) {
