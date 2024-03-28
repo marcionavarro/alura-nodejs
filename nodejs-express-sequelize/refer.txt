@@ -1,2 +1,15 @@
+## Instalação
 npm install sequelize@6.32.1 sequelize-cli@6.6.1 sqlite3@5.1.6 --save-exact
 npx sequelize-cli init 
+
+## Model
+npx sequelize-cli model:generate --name Pessoa --attributes nome:string,email:string,cpf:string,ativo:boolean,role:string
+
+## Rodar Migration
+npx sequelize-cli db:migrate
+
+## Seed
+npx sequelize-cli seed:generate --name demo-pessoa
+
+## Rodar Seed
+npx sequelize-cli db:seed:all
