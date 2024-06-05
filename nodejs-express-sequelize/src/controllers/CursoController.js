@@ -1,12 +1,36 @@
+const { Op } = require('sequelize');
 const Controller = require('./Controller.js');
-const CurosServices = require('../services/CursoServices.js');
+const CursoServices = require('../services/CursoServices.js');
 
-const curosServices = new CurosServices();
+const cursoServices = new CursoServices();
 
-class CurosController extends Controller {
+class CursosController extends Controller {
   constructor() {
-    super(curosServices);
+    super(cursoServices);
   }
+
+  async pegaCursos(req, res) {
+    const { data_inicial, data_final } = req.query;
+    const where = {};
+
+    // se existirem os param, criar prop {}
+    data_inicial || data_final ? where.data_inicio = {} : null;
+
+    // se existir data_inicial, adiciona a prop gte
+    data_inicial ? where.data_inicio[Op.gte] = data_inicial : null;
+
+    // se existir data_final, adiciona a prop lte
+    data_final ? where.data_inicio[Op.lte] = data_final : null;
+
+    try {
+      const listaCursos = await cursoServices.pegaTodosOsRegistros(where);
+      return res.status(200).json(listaCursos);
+    } catch (erro) {
+      return res.status(500).json({erro: erro.message});
+    }
+
+  }
+
 }
 
-module.exports = CurosController;
+module.exports = CursosController;
