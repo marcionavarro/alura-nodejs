@@ -23,6 +23,10 @@ class Services {
     });
   }
 
+  async pegaEContaERegistros(options) {
+    return dataSource[this.model].findAndCountAll({...options});
+  }
+
   async criaRegistro(dadosRegistro) {
     return dataSource[this.model].create(dadosRegistro);
   }
