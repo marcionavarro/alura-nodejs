@@ -1,8 +1,6 @@
 📌 Alura Docs
 
-Nesse projeto fizemos a comunicação com a tecnologia websocket  
-e simulamos um chat onde podemos adicionar o nome de um documento, colocar um texto descritivo,  
-e deletar o documento, tudo em tempo real.
+Comunicações em tempo real com Socket.IO e MongoDB
 
 🚀 Tecnologias Utilizadas
 
